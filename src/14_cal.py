@@ -30,3 +30,18 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
+new_calendar = calendar.Calendar()
+current_month = datetime.month
+current_year = datetime.year
+def calendarFunction(selected_month=None, selected_year=None):
+  if len(locals()) == 2:
+    return new_calendar.monthdatescalendar(selected_year, selected_month)
+  elif len(locals()) == 1:
+    return  new_calendar.monthdatescalendar(current_year, selected_month)
+  elif len(locals()) == 0:
+    return new_calendar.monthdatescalendar(current_year,current_month)
+  else:
+    print("Please use two integers as arguments and try again.")
+
+calendarFunction()
+    
