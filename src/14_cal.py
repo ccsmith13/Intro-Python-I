@@ -30,18 +30,40 @@ it should use today’s date to get the month and year.
 import sys
 import calendar
 from datetime import datetime
-new_calendar = calendar.Calendar()
-current_month = datetime.month
-current_year = datetime.year
-def calendarFunction(selected_month=None, selected_year=None):
-  if len(locals()) == 2:
-    return new_calendar.monthdatescalendar(selected_year, selected_month)
-  elif len(locals()) == 1:
-    return  new_calendar.monthdatescalendar(current_year, selected_month)
-  elif len(locals()) == 0:
-    return new_calendar.monthdatescalendar(current_year,current_month)
+
+def calendarFunction():
+  c = calendar.TextCalendar(calendar.SUNDAY)
+  current_year = datetime.now().year
+  current_month = datetime.now().month
+  exception_message = "Please only use valid integers as arguments and try again. The optional first integer must be an integer less than or equal to 12. The optional second integer must have a length of 4."
+
+  if len(sys.argv) == 3:
+    if not int(sys.argv[1])<=12:
+      raise Exception((exception_message))
+    elif not len(sys.argv[2])<=4:
+        raise Exception(exception_message)
+    try: 
+      int(sys.argv[2])
+    except:
+      raise Exception(exception_message)
+      
+    selected_month=int(sys.argv[1])
+    selected_year=int(sys.argv[2])
+    cal = c.formatmonth(selected_year, selected_month)
+    print(cal)
+
+  elif len(sys.argv) == 2:
+    if not int(sys.argv[1])<=12:
+      raise Exception(exception_message)
+    selected_month=int(sys.argv[1])
+    cal = c.formatmonth(current_year, selected_month)
+    print(cal)
+
+  elif len(sys.argv) == 1:
+    cal = c.formatmonth(current_year, current_month)
+    print(cal)
+
   else:
-    print("Please use two integers as arguments and try again.")
+    print("Please check your input and try again. Too many integers may have been used.")
 
 calendarFunction()
-    
