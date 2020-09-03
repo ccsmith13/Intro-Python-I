@@ -37,8 +37,14 @@ print("Distance is: {:.2f}".format(dist(a, b)))
 # YOUR CODE HERE
 
 t = (1, 2, 5, 7, 99)
-print_tuple(t)  # Prints 1 2 5 7 99, one per line
 
+def print_tuple(t):  # Prints 1 2 5 7 99, one per line
+   count = 0
+   while (count < len(t)):
+       print(t[count])
+       count = count + 1
+print_tuple(t)
 # Declare a tuple of 1 element then print it
-u = (1)  # What needs to be added to make this work?
+u = (1, )  # What needs to be added to make this work?
+# Answer: a trailing comma needs to be added to signify to the interpreter that this is a tuple.
 print_tuple(u)
